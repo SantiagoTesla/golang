@@ -19,7 +19,7 @@ func healthz(res http.ResponseWriter, req *http.Request) {
 
 	//1.接收客户端 request，并将 request 中带的 header 写入 response header
 	for k, v := range req.Header {
-		fmt.Fprintf(res, "Header[%q] = %q\n", k, v)
+		fmt.Fprintln(res, k+":", v)
 	}
 
 	//2.读取当前系统的环境变量中的 VERSION 配置，并写入 response header
