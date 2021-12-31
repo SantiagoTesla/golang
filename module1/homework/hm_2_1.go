@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"runtime"
+	"os"
 )
 
 func main() {
@@ -23,7 +23,8 @@ func healthz(res http.ResponseWriter, req *http.Request) {
 	}
 
 	//2.读取当前系统的环境变量中的 VERSION 配置，并写入 response header
-	fmt.Fprintf(res, "Go Version = [%q]\n", runtime.Version())
+	version := os.Getenv("VERSION")
+	fmt.Fprintf(res, "VERSION = [%q]\n", version)
 
 	//3.Server 端记录访问日志，包括客户端 IP，HTTP 返回码，输出到 server 端的标准输出
 	ClientIPAddr := req.RemoteAddr
