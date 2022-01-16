@@ -1,7 +1,11 @@
-FROM golang:1.17-alpine
-WORKDIR /go/src
-COPY go.mod /go/src
-COPY *.go /go/src
-RUN go build -o /go/bin/httpserver
+FROM golang:1.17-alpine AS build
+WORKDIR /build
+COPY go.mod .
+COPY *.go .
+RUN go build -o httpserver
+
+FROM alpine:latest
+WORKDIR /
+COPY --from=build /build/httpserver /httpserver
 EXPOSE 80
-CMD [ "/go/bin/httpserver" ]
+ENTRYPOINT [ "./httpserver" ]
