@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"net/http"
@@ -19,6 +20,7 @@ func main() {
 
 func healthz(res http.ResponseWriter, req *http.Request) {
 
+	io.WriteString(res, "hello, world!\n")
 	//1.接收客户端 request，并将 request 中带的 header 写入 response header
 	for k, v := range req.Header {
 		//fmt.Fprintln(res, k+":", v)

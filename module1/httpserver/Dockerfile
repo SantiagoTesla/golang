@@ -1,6 +1,7 @@
 FROM golang:1.17-alpine
-WORKDIR /httpserver
-ADD *.go /httpserver
-RUN go build -o httpserver
+WORKDIR /go/src
+COPY go.mod /go/src
+COPY *.go /go/src
+RUN go build -o /go/bin/httpserver
 EXPOSE 80
-ENTRYPOINT /httpserver
+CMD [ "/go/bin/httpserver" ]
