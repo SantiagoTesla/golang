@@ -3,8 +3,6 @@ package metrics
 import (
 	"fmt"
 	"time"
-
-	"github.com/prometheus/client_golang/prometheus"
 )
 
 const (

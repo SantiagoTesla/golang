@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math/rand"
 	"net"
 	"net/http"
 	"os"
 	"strings"
-
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"time"
 )
 
 func main() {
@@ -25,6 +25,14 @@ func main() {
 func healthz(res http.ResponseWriter, req *http.Request) {
 
 	io.WriteString(res, "hello, world!\n")
+
+	//延迟0-2秒
+	timer := metrics.NewTimer()
+	defer timer.ObserveTotal()
+	randInt := rand.Intn(2000)
+	time.Sleep(time.Millisecond * time.Duration(randInt))
+	res.Write([]byte(fmt.Sprintf("<h1>%d<h1>", randInt)))
+
 	//1.接收客户端 request，并将 request 中带的 header 写入 response header
 	for k, v := range req.Header {
 		//fmt.Fprintln(res, k+":", v)
