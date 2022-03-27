@@ -9,7 +9,7 @@ set tracing.sampling=100
 ### Deploy httpserver
 
 ```sh
-kubectl create ns model12
+kubectl create ns modele12
 kubectl label ns model12 istio-injection=enabled
 kubectl create -f httpserver.yaml -n module12
 
