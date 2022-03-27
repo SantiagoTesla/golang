@@ -10,7 +10,7 @@ set tracing.sampling=100
 
 ```sh
 kubectl create ns model12
-kubectl label ns tracing istio-injection=enabled
+kubectl label ns model12 istio-injection=enabled
 kubectl -n model12 apply -f service0.yaml
 kubectl -n model12 apply -f service1.yaml
 kubectl -n model12 apply -f service2.yaml
