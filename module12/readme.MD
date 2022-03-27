@@ -6,7 +6,7 @@ kubectl edit configmap istio -n istio-system
 set tracing.sampling=100
 ```
 
-### Deploy httpserver svc1,svc2,svc3
+### Deploy httpserver
 
 ```sh
 kubectl create ns model12
