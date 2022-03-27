@@ -11,9 +11,7 @@ set tracing.sampling=100
 ```sh
 kubectl create ns model12
 kubectl label ns model12 istio-injection=enabled
-kubectl -n model12 apply -f service0.yaml
-kubectl -n model12 apply -f service1.yaml
-kubectl -n model12 apply -f service2.yaml
+kubectl create -f httpserver.yaml -n module12
 
 openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=cncamp Inc./CN=*.cncamp.io' -keyout cncamp.io.key -out cncamp.io.crt
 kubectl create -n istio-system secret tls cncamp-credential --key=cncamp.io.key --cert=cncamp.io.crt
